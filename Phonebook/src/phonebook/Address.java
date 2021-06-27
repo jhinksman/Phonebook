@@ -11,7 +11,7 @@ public class Address {
 		super();
 	}
 	//parameterized constructor
-	public Address(String streetAddress, String city, String state, String zipcode) {
+	public Address(String city, String state, String zipcode, String streetAddress) {
 		super();
 		this.streetAddress = streetAddress;
 		this.city = city;
