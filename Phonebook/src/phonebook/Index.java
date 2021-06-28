@@ -3,18 +3,13 @@ package phonebook;
 import java.util.Scanner;
 
 public class Index {
-//make a temp array that is 1 bigger and one smaller
-// long for phone number
 
-	// global array and scanner to avoid making multiple scanners
+	// global array and scanner
 	public static Person[] phoneBookArray = new Person[3];
 	public static Scanner in = new Scanner(System.in);
 
-	// use this class to handle CRUD
-	// Creation, updating, and deleting
 	public static void testCases() {
-		// may want to show adding one of these objects to an array?
-		// put this in the same order as the project
+		
 		Person person1 = new Person("John", "", "Doe", "114 Market St", "St Louis", "MO", "63403", 6366435698L);
 		Person person2 = new Person("John", "E", "Doe", "324 Main St", "St Charles", "MO", "63303", 8475390126L);
 		Person person3 = new Person("John", "Michael West", "Doe", "574 Pole Ave", "St Peters", "MO", "63333",
@@ -27,7 +22,8 @@ public class Index {
 
 	public static void deleteByPhone() {
 
-		System.out.print("Enter the phone number of entry you would like to delete: ");
+		System.out.print("Enter the phone number of entry you would like to delete\n"
+				+ "Please exclude punctuation (ex. : 0123456789): ");
 		String userIn = in.next();
 
 		// create an array 1 index smaller than the current array in order to delete and
@@ -68,8 +64,8 @@ public class Index {
 	public static void addEntry() {
 
 		System.out.print(
-				"Enter the complete entry you would like added separated by commas. Please ensure you follow the format below."
-						+ "\nFORMAT: Name, Street address, City(no periods, ex: St Louis), State, Zipcode, phone number"
+				"\nEnter the complete entry you would like added separated by commas. Please ensure you follow the format below."
+						+ "\nFORMAT: Name, Street address, City(no periods, ex: St Louis), State, Zipcode, phone number\n"
 						+ "\nYour entry: ");
 
 		// take user input for a full phonebook entry
@@ -107,7 +103,6 @@ public class Index {
 		}
 
 		int largerArrSize = Index.phoneBookArray.length + 1;
-
 		int i = 0;
 		int j = 1;
 		// initialize new, larger array
@@ -116,14 +111,6 @@ public class Index {
 			temp[i] = phoneBookArray[i];
 			i++;
 		}
-
-		// add everything from the original array into the new array
-//		for (Person entry : phoneBookArray) {
-//			temp[i] = phoneBookArray[i];
-//			i++;
-//			j++;
-//			System.out.println(entry);
-//		}
 
 		// set phoneBookArray to new larger sized array
 		phoneBookArray = temp;
@@ -135,90 +122,15 @@ public class Index {
 		phoneBookArray[i] = nextPerson;
 
 		// print all values to see your new entry in the array
-
 		MainMenu.showAll();
 	}
 
-	public static void cityOrState() {
-
-		String option = "";
-		int intOption = 0;
-		System.out.println("Would you like to search by : \n" + "[1] City\n[2] State" + "\nYour entry: ");
-		try {
-			option = Index.in.next();
-			// convert user string into int to handle dataType mismatch
-			intOption = Integer.parseInt(option);
-
-			switch (intOption) {
-			case 1:
-				searchByCity();
-				MainMenu.continueMethod();
-				break;
-			case 2:
-				searchByState();
-				MainMenu.continueMethod();
-				break;
-			default:
-				System.out.print("Invalid entry: ");
-				MainMenu.mainMenu();
-				break;
-
-			}
-
-		} catch (NumberFormatException e) {
-			// return to main menu if user would like.
-			System.out.println("Invalid entry: Please input number between 1-10.");
-			MainMenu.continueMethod();
-		}
-	}
-
-	public static void searchByCity() {
-		System.out.print("Enter the city name: ");
-		String userIn = in.nextLine();
-		String passOrFail = "";
-		// For each loop calls the "getLastName" method from the Person class and
-		// compares the returned
-		// value to user input. Matching person objects are printed to the console.
-
-		for (Person entry : phoneBookArray) {
-			if (entry.getCity().equalsIgnoreCase(userIn)) {
-				System.out.println(entry);
-				passOrFail = "Entry located.";
-			} else {
-				passOrFail = "Entry could not be located";
-			}
-		}
-		System.out.println(passOrFail);
-
-		MainMenu.continueMethod();
-	}
-
-	public static void searchByState() {
-		System.out.print("Enter the state name: ");
-		String userIn = in.nextLine();
-		String passOrFail = "";
-		// For each loop calls the "getLastName" method from the Person class and
-		// compares the returned
-		// value to user input. Matching person objects are printed to the console.
-
-		for (Person entry : phoneBookArray) {
-			if (entry.getState().equalsIgnoreCase(userIn)) {
-				System.out.println(entry);
-				passOrFail = "Entry located.";
-			} else {
-				passOrFail = "Entry could not be located";
-			}
-		}
-		System.out.println(passOrFail);
-
-		MainMenu.continueMethod();
-	}
-
+	// bubble sort to sort the showAll method alphabetically
 	public static void bubbleSort() {
 		int n = Index.phoneBookArray.length;
 		for (int i = 0; i < n - 1; i++) {
 			for (int j = 0; j < n - i - 1; j++) {
-				if (phoneBookArray[j].getFirstName().compareTo(phoneBookArray[j + 1].getFirstName()) >1 ) {
+				if (phoneBookArray[j].getFirstName().compareTo(phoneBookArray[j + 1].getFirstName()) > 1) {
 					Person temp = Index.phoneBookArray[j];
 					Index.phoneBookArray[j] = Index.phoneBookArray[j + 1];
 					Index.phoneBookArray[j + 1] = temp;

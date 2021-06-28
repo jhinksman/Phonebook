@@ -60,7 +60,7 @@ public class Person extends Address{
 	public String toString() {
 		//don't print midName if user doesn't have one
 		return "Person: " + firstName + " " + midName+ " "+ lastName + ", " + getStreetAddress() + ", " + getCity() + ", " + getState()
-				+ ", " + getZipcode() + ", " + phone;
+				+ ", " + getZipcode() + ", " + phone ;
 	}
 	
 	

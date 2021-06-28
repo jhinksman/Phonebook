@@ -30,7 +30,6 @@ public class MainMenu {
 				+ "[6]: Search phonebook entries by phone number.\n" + "[7]: Search phonbeook entries by city.\n"
 				+ "[8]: Search phonebook entries by state. \n" + "[9]: Show all phonebook entries. \n"
 				+ "[10]: Update a given phonebook entry. \n" + "\nYour entry: ");
-		// method to catch incorrect user input
 		Scanner input = new Scanner(System.in);
 		try {
 			option = input.next();
@@ -69,7 +68,6 @@ public class MainMenu {
 				updateEntry();
 				break;
 			default:
-				// add error message for type mismatch
 				System.out.print("Invalid entry: ");
 				mainMenu();
 				break;
@@ -81,20 +79,6 @@ public class MainMenu {
 
 		}
 
-	}
-
-	public static void addEntry() {
-		System.out.println("The test addEntry method has run.");
-		continueMethod();
-	}
-
-	public static void deleteEntry() {
-		System.out.println("The test deleteEntry has run.");
-	}
-
-	public static void search() {
-		System.out.println("The test search method has run.");
-		continueMethod();
 	}
 
 	// searches Person object by first name
@@ -115,8 +99,7 @@ public class MainMenu {
 		}
 		// notify user search results are over, surrounded by whitespace for
 		// readability.
-		System.out.println(passOrFail);
-		System.out.println("\n***End of Search Results***\n");
+		System.out.println("\n"+passOrFail);
 		continueMethod();
 	}
 
@@ -130,12 +113,11 @@ public class MainMenu {
 
 		for (Person entry : Index.phoneBookArray) {
 			if (entry.getLastName().equalsIgnoreCase(userIn)) {
-				System.out.println(entry);
+				System.out.println(entry); 
 				passOrFail = "Entry located.";
 			}
 		}
-		System.out.println(passOrFail);
-		System.out.println("\n" + "***End of Search Results***" + "\n");
+		System.out.println("\n"+passOrFail);
 		continueMethod();
 	}
 
@@ -162,6 +144,7 @@ public class MainMenu {
 				passOrFail = "Entry located.";
 			} 
 		}
+		System.out.println("\n" + passOrFail);
 		continueMethod();
 	}
 
@@ -199,7 +182,7 @@ public class MainMenu {
 				passOrFail = "Entry located.";
 			}
 		}
-		System.out.println(passOrFail);
+		System.out.println("\n" + passOrFail);
 		
 		continueMethod();
 	}
@@ -210,7 +193,7 @@ public class MainMenu {
 		Scanner input = new Scanner (System.in);
 		String userIn = input.nextLine();
 		String passOrFail = "Entry could not be located";
-		// For each loop calls the "getLastName" method from the Person class and
+		// For each loop calls the "getState" method from the Person class and
 		// compares the returned
 		// value to user input. Matching person objects are printed to the console.
 
@@ -234,8 +217,6 @@ public class MainMenu {
 		for (Person entry : Index.phoneBookArray) {
 			System.out.println(entry);
 		}
-
-		// System.out.println("\n" + "***End of Search Results***" + "\n");
 		continueMethod();
 	}
 
@@ -281,42 +262,42 @@ public class MainMenu {
 					case 2:
 						System.out.print("Enter new middle name: ");
 						String midName = Index.in.next();
-						entry.setFirstName(midName);
+						entry.setMidName(midName);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
 					case 3:
 						System.out.print("Enter new last name: ");
 						String lastName = Index.in.next();
-						entry.setFirstName(lastName);
+						entry.setLastName(lastName);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
 					case 4:
 						System.out.print("Enter new street address: ");
 						String street = Index.in.next();
-						entry.setFirstName(street);
+						entry.setStreetAddress(street);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
 					case 5:
 						System.out.print("Enter new city: ");
 						String city = Index.in.next();
-						entry.setFirstName(city);
+						entry.setCity(city);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
 					case 6:
 						System.out.print("Enter new state in the following format (OH): ");
 						String state = Index.in.next();
-						entry.setFirstName(state);
+						entry.setState(state);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
 					case 7:
 						System.out.print("Enter new zipcode: ");
 						String zip = Index.in.next();
-						entry.setFirstName(zip);
+						entry.setZipcode(zip);
 						System.out.println("\nYour new entry: \n\n" + entry);
 						passOrFail = "\nNew entry displayed above";
 						break;
